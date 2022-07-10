@@ -36,7 +36,9 @@ app.get('/category/:name', async (req, res) => {
     const {name} = req.params;
     res.json(await querys.getProductByCategory(name));
 })
-
+app.get('*', function (req, res) {
+    res.redirect('/');
+  });
 //404 error
 app.use((req, res) => {
     res.status(404).send('404 not found')
