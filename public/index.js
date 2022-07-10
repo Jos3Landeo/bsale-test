@@ -2,7 +2,7 @@ const myform = document.getElementById('myform');
 const HTMLResponse = document.querySelector('#content');
 const menuDrop = document.querySelector('#menudrop');
 const port = location.port;
-
+console.log(port);
 const getProducts = async () => {
     const url = `http://localhost:${port}/products`;
     const respuesta = await fetch(url);
