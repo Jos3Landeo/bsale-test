@@ -1,17 +1,13 @@
 const myform = document.getElementById('myform');
 const HTMLResponse = document.querySelector('#content');
 const menuDrop = document.querySelector('#menudrop');
-const port = location.port;
-console.log(port);
-const getProducts = async () => {
-    const url = `https://bsale-test-js.herokuapp.com/products`;
-    const respuesta = await fetch(url);
-    const data = await respuesta.json();
-    const list = data.map(product => {
+
+const body = (value) =>{
+    const list = value.map(product => {
         return (`
                 <div class="col mt-4">
                     <div class="card" style="width: 18rem;">
-                    <img src="${product.url_image}" class="img-thumbnail" alt="...">
+                    <img src="${product.url_image}" class="img-thumbnail" alt="No disponible">
                     <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">$${product.price}</p>
@@ -21,6 +17,13 @@ const getProducts = async () => {
             `)
     });
     HTMLResponse.innerHTML = `${list.join('')}`
+}
+
+const getProducts = async () => {
+    const url = `https://bsale-test-js.herokuapp.com/products`;
+    const respuesta = await fetch(url);
+    const data = await respuesta.json();
+    body(data);
 }
 const getCategories = async () => {
     const url = `https://bsale-test-js.herokuapp.com/categories`;
@@ -46,39 +49,12 @@ const getProductByName = async () => {
     const url = `https://bsale-test-js.herokuapp.com/products/${myinput}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
-    const list = data.map(product => {
-        return (`
-                <div class="col mt-4">
-                    <div class="card" style="width: 18rem;">
-                    <img src="${product.url_image}" class="img-thumbnail" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.price}</p>
-                    </div>
-                    </div>
-                </div>
-            `)
-    });
-    HTMLResponse.innerHTML = `${list.join('')}`
+    body(data);
 }
-
 const getProductByCategory = async (value) => {
     event.preventDefault();
     const url = `https://bsale-test-js.herokuapp.com/category/${value}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
-    const list = data.map(product => {
-        return (`
-                <div class="col mt-4">
-                    <div class="card" style="width: 18rem;">
-                    <img src="${product.url_image}" class="img-thumbnail" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.price}</p>
-                    </div>
-                    </div>
-                </div>
-            `)
-    });
-    HTMLResponse.innerHTML = `${list.join('')}`
+    body(data);
 }

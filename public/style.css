@@ -1,3 +1,9 @@
 img{
-    height: 250px !important;
+    height: 240px !important;
+}
+.card{
+    height: 360px !important;
+}
+.card h5{
+    height: 50px;
 }

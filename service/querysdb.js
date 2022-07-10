@@ -19,7 +19,7 @@ const getProductByName = (texto) => {
     });
 }
 const getProductByCategory = (texto) => {
-    const sql = `SELECT * FROM product z join category x on (z.category=x.id) where x.name = '${texto}'`;
+    const sql = `SELECT z.id as id_producto,x.id as id_categoria,z.name,x.name as nombreC,price,url_image FROM product z join category x on (z.category=x.id) where x.name = '${texto}'`;
     return new Promise(resolve => {
         connection.query(sql, function (error, results) {
             if (error) throw error;
