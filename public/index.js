@@ -1,9 +1,10 @@
 const myform = document.getElementById('myform');
 const HTMLResponse = document.querySelector('#content');
 const menuDrop = document.querySelector('#menudrop');
+const port = location.port;
 
 const getProducts = async () => {
-    const url = `http://localhost:3000/products`;
+    const url = `http://localhost:${port}/products`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     const list = data.map(product => {
@@ -22,7 +23,7 @@ const getProducts = async () => {
     HTMLResponse.innerHTML = `${list.join('')}`
 }
 const getCategories = async () => {
-    const url = `http://localhost:3000/categories`;
+    const url = `http://localhost:${port}/categories`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     const list = data.map(category => {
@@ -42,7 +43,7 @@ myform.addEventListener('submit', () => {
 
 const getProductByName = async () => {
     const myinput = document.querySelector('#myinput').value;
-    const url = `http://localhost:3000/products/${myinput}`;
+    const url = `http://localhost:${port}/products/${myinput}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     const list = data.map(product => {
@@ -63,7 +64,7 @@ const getProductByName = async () => {
 
 const getProductByCategory = async (value) => {
     event.preventDefault();
-    const url = `http://localhost:3000/category/${value}`;
+    const url = `http://localhost:${port}/category/${value}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     const list = data.map(product => {
