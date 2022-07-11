@@ -20,13 +20,13 @@ const body = (value) =>{
 }
 
 const getProducts = async () => {
-    const url = `https://bsale-test-js.herokuapp.com/products`;
+    const url = `https://bsale-test-js.herokuapp.com/api/products`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     body(data);
 }
 const getCategories = async () => {
-    const url = `https://bsale-test-js.herokuapp.com/categories`;
+    const url = `https://bsale-test-js.herokuapp.com/api/categories`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     const list = data.map(category => {
@@ -46,14 +46,14 @@ myform.addEventListener('submit', () => {
 
 const getProductByName = async () => {
     const myinput = document.querySelector('#myinput').value;
-    const url = `https://bsale-test-js.herokuapp.com/products/${myinput}`;
+    const url = `https://bsale-test-js.herokuapp.com/api/products/${myinput}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     body(data);
 }
 const getProductByCategory = async (value) => {
     event.preventDefault();
-    const url = `https://bsale-test-js.herokuapp.com/category/${value}`;
+    const url = `https://bsale-test-js.herokuapp.com/api/category/${value}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     body(data);
