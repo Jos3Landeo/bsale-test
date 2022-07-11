@@ -2,11 +2,13 @@ const express = require('express');
 const querys = require('./service/querysdb')
 const bodyParser = require('body-parser');
 const path = require('path');
+var routes = require('./routes/routes')
 
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
-
+// Api Routes
+app.use('/api', routes)
 // Frontend Route
 app.use('/', express.static(path.join(__dirname, '/public/')));
 
@@ -22,20 +24,20 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log("Servidor corriendo en puerto " + port);
 });
-app.get('/products', async (req, res) => {
-    res.json(await querys.getProducts(req.query));
-})
-app.get('/products/:name', async (req, res) => {
-    const {name} = req.params;
-    res.json(await querys.getProductByName(name));
-})
-app.get('/categories', async (req, res) => {
-    res.json(await querys.getCategories(req.query));
-})
-app.get('/category/:name', async (req, res) => {
-    const {name} = req.params;
-    res.json(await querys.getProductByCategory(name));
-})
+// app.get('/products', async (req, res) => {
+//     res.json(await querys.getProducts(req.query));
+// })
+// app.get('/products/:name', async (req, res) => {
+//     const {name} = req.params;
+//     res.json(await querys.getProductByName(name));
+// })
+// app.get('/categories', async (req, res) => {
+//     res.json(await querys.getCategories(req.query));
+// })
+// app.get('/category/:name', async (req, res) => {
+//     const {name} = req.params;
+//     res.json(await querys.getProductByCategory(name));
+// })
 app.get('*', function (req, res) {
     res.redirect('/');
   });
