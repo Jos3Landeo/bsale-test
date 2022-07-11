@@ -46,7 +46,7 @@ myform.addEventListener('submit', () => {
 
 const getProductByName = async () => {
     const myinput = document.querySelector('#myinput').value;
-    const url = `https://bsale-test-js.herokuapp.com/api/products/${myinput}`;
+    const url = `https://bsale-test-js.herokuapp.com/api/product/${myinput}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     body(data);
