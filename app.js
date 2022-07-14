@@ -6,6 +6,8 @@ var routes = require('./routes/routes')
 //Puerto localhost = 3000, de no ser asi tomara el del servidor
 const port = process.env.PORT || 3000;
 
+//Cors, permisos
+app.use(cors())
 
 //Ruta de las apis, estas empezaran luego de /api/..
 app.use('/api', routes)
@@ -13,9 +15,6 @@ app.use('/api', routes)
 app.get('/', function (req, res) {
     res.send('Apis Bsale..');
 });
-
-//Cors, permisos
-app.use(cors())
 
 //Listen
 app.listen(port, () => {
