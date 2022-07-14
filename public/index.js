@@ -1,7 +1,7 @@
 const myform = document.getElementById('myform'); //Formulario de busqueda
 const HTMLResponse = document.querySelector('#content'); //Div principal, contiene todo el contenido
 const menuDrop = document.querySelector('#menudrop'); //Drop menu de las categorias
-const headers = {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'};
+const headers = {};
 //Cuerpo, recibe los Json de las API y las lista
 const body = (value) =>{
     const list = value.map(product => {
