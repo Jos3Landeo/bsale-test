@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 var routes = require('./routes/routes')
 
 //Puerto localhost = 3000, de no ser asi tomara el del servidor

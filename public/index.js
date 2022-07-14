@@ -1,7 +1,7 @@
 const myform = document.getElementById('myform'); //Formulario de busqueda
 const HTMLResponse = document.querySelector('#content'); //Div principal, contiene todo el contenido
 const menuDrop = document.querySelector('#menudrop'); //Drop menu de las categorias
-
+const headers = {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'};
 //Cuerpo, recibe los Json de las API y las lista
 const body = (value) =>{
     const list = value.map(product => {
@@ -22,7 +22,7 @@ const body = (value) =>{
 //Consulta de los productos en general
 const getProducts = async () => {
     const url = `https://bsale-test-js.herokuapp.com/api/products`;
-    const respuesta = await fetch(url);
+    const respuesta = await fetch(url, {method : "GET", mode: 'cors', headers: headers});
     const data = await respuesta.json();
     body(data);
 }
