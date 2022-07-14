@@ -21,14 +21,14 @@ const body = (value) =>{
 }
 //Consulta de los productos en general
 const getProducts = async () => {
-    const url = `http://localhost:3000/api/products`;
+    const url = `https://bsale-test-js.herokuapp.com/api/products`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     body(data);
 }
 //Consulta del nombre de las categorias
 const getCategories = async () => {
-    const url = `http://localhost:3000/api/categories`;
+    const url = `https://bsale-test-js.herokuapp.com/api/categories`;
     const respuesta = await fetch(url);
     const data = await respuesta.json();
     const list = data.map(category => {
@@ -51,7 +51,7 @@ myform.addEventListener('submit', () => {
 const getProductByName = async () => {
     showMessage(0);
     const myinput = document.querySelector('#myinput').value;
-    const url = `http://localhost:3000/api/product/${myinput}`;
+    const url = `https://bsale-test-js.herokuapp.com/api/product/${myinput}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     const isEmpty = Object.keys(data).length === 0;
@@ -64,7 +64,7 @@ const getProductByName = async () => {
 const getProductByCategory = async (value) => {
     event.preventDefault();
     showMessage(0);
-    const url = `http://localhost:3000/api/category/${value}`;
+    const url = `https://bsale-test-js.herokuapp.com/api/category/${value}`;
     const respuesta = await fetch(url);  
     const data = await respuesta.json();
     body(data);
