@@ -1,18 +1,20 @@
 const express = require('express');
-const querys = require('./service/querysdb')
-const bodyParser = require('body-parser');
+const app = express();
 const path = require('path');
 var routes = require('./routes/routes')
 
+//Puerto localhost = 3000, de no ser asi tomara el del servidor
 const port = process.env.PORT || 3000;
-const app = express();
-app.use(bodyParser.urlencoded({ extended: false }))
-// Api Routes
-app.use('/api', routes)
-// Frontend Route
-app.use('/', express.static(path.join(__dirname, '/public/')));
 
-//Cors
+
+//Ruta de las apis, estas empezaran luego de /api/..
+app.use('/api', routes)
+
+app.get('/', function (req, res) {
+    res.send('Apis Bsale..');
+});
+
+//Cors, permisos
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -21,27 +23,16 @@ app.use((req, res, next) => {
     next();
 });
 
+//Listen
 app.listen(port, () => {
     console.log("Servidor corriendo en puerto " + port);
 });
-// app.get('/products', async (req, res) => {
-//     res.json(await querys.getProducts(req.query));
-// })
-// app.get('/products/:name', async (req, res) => {
-//     const {name} = req.params;
-//     res.json(await querys.getProductByName(name));
-// })
-// app.get('/categories', async (req, res) => {
-//     res.json(await querys.getCategories(req.query));
-// })
-// app.get('/category/:name', async (req, res) => {
-//     const {name} = req.params;
-//     res.json(await querys.getProductByCategory(name));
-// })
-app.get('*', function (req, res) {
-    res.redirect('/');
-  });
-//404 error
+
+//404
 app.use((req, res) => {
-    res.status(404).send('404 not found')
+    res.status(404).send('404 No se encontro')
 })
+//505
+app.use(function(err, req, res, next) {
+    res.status(500).send('Algo salio mal!');
+  });

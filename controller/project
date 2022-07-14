@@ -1,13 +1,20 @@
 
 
 const querys = require('../service/querysdb')
+
+//Controlador que hace el llamado a las query para ser consumidas
 var controller = {
     products: async (req,res)  => {
         res.json(await querys.getProducts(req.query));
     },
     product: async (req,res) => {
         const {name} = req.params;
-        res.json(await querys.getProductByName(name));
+        if (!name) {
+            res.json(await querys.getProducts(req.query));
+        } else {
+            res.json(await querys.getProductByName(name));
+        }
+        
     },
     categories: async (req,res) => {
         res.json(await querys.getCategories(req.query));
